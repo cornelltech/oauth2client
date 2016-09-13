@@ -76,6 +76,10 @@ Go to the following link in your browser:
 
 def _CreateArgumentParser():
     try:
+        if hasattr(sys, 'argv'):  # to handle edge case where call is from embedded Python with no argv.
+            import argparse
+        else:
+            return None
         import argparse
     except ImportError:  # pragma: NO COVER
         return None
